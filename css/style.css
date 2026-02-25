@@ -996,18 +996,20 @@ section {
 .timeline-item {
     position: relative;
     margin-bottom: var(--spacing-xl);
+    padding-top: 0.5rem;
 }
 
 .timeline-marker {
     position: absolute;
-    left: -13px;
-    top: 6px;
-    width: 24px;
-    height: 24px;
+    left: -25px; /* -29 */
+    top: 10px;
+    width: 24px; /* 27 */
+    height: 24px; /* 27 */
     background-color: var(--purple-main);
     border: 3px solid var(--bg);
     border-radius: 50%;
     box-shadow: 0 0 15px var(--purple-glow);
+    z-index: 1;
 }
 
 .timeline-year {
@@ -1015,6 +1017,9 @@ section {
     font-weight: 600;
     color: var(--purple-light);
     text-transform: uppercase;
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    padding-top: 0.25rem;
 }
 
 .timeline-role {

@@ -6,18 +6,14 @@
 // Configuration object for easy URL updates
 const CONFIG = {
     // Template URLs - Replace these with your actual URLs
-    profilePhoto: 'PROFILE_PHOTO_URL',
-    aboutPhoto: 'ABOUT_PHOTO_URL',
-    resumeUrl: 'RESUME_URL',
+    profilePhoto: '../assets/About-pfp.png',
+    aboutPhoto: '../assets/Tayyaba-pfp.png',
+    resumeUrl: '../assets/Tayyaba Zubaid-Resume.pdf',
     
     // Contact information
     email: 'EMAIL_ADDRESS',
     linkedin: 'LINKEDIN_URL',
     github: 'GITHUB_URL',
-    twitter: 'TWITTER_URL',
-    dribbble: 'DRIBBBLE_URL',
-    behance: 'BEHANCE_URL',
-    pinterest: 'PINTEREST_URL',
     
     // Project links
     projects: [
@@ -87,31 +83,10 @@ function updateDynamicContent() {
         }
     });
     
-    // Update social links
-    updateSocialLinks();
+
     
     // Update contact information
     updateContactInfo();
-}
-
-/**
- * Update all social media links
- */
-function updateSocialLinks() {
-    const socialLinks = {
-        'TWITTER_URL': CONFIG.twitter,
-        'DRIBBBLE_URL': CONFIG.dribbble,
-        'BEHANCE_URL': CONFIG.behance,
-        'PINTEREST_URL': CONFIG.pinterest
-    };
-    
-    document.querySelectorAll('a[href*="TWITTER_URL"], a[href*="DRIBBBLE_URL"], a[href*="BEHANCE_URL"], a[href*="PINTEREST_URL"]').forEach(link => {
-        for (const [placeholder, url] of Object.entries(socialLinks)) {
-            if (link.href.includes(placeholder)) {
-                link.href = url;
-            }
-        }
-    });
 }
 
 /**
