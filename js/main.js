@@ -6,7 +6,7 @@
 // Configuration object for easy URL updates
 const CONFIG = {
     // Template URLs - Replace these with your actual URLs
-    profilePhoto: '../assets/About-pfp.png',
+    profilePhoto: '../assets/Tayyaba-pfp.png',
     aboutPhoto: '../assets/Tayyaba-pfp.png',
     resumeUrl: '../assets/Tayyaba Zubaid-Resume.pdf',
     
@@ -18,7 +18,7 @@ const CONFIG = {
     // Project links
     projects: [
         {
-            image: 'PROJECT_1_IMAGE_URL',
+            image: '../assets/Pokemon.png',
             link: 'PROJECT_1_LINK'
         },
         {
@@ -83,10 +83,31 @@ function updateDynamicContent() {
         }
     });
     
-
+    // Update social links
+    updateSocialLinks();
     
     // Update contact information
     updateContactInfo();
+}
+
+/**
+ * Update all social media links
+ */
+function updateSocialLinks() {
+    const socialLinks = {
+        'TWITTER_URL': CONFIG.twitter,
+        'DRIBBBLE_URL': CONFIG.dribbble,
+        'BEHANCE_URL': CONFIG.behance,
+        'PINTEREST_URL': CONFIG.pinterest
+    };
+    
+    document.querySelectorAll('a[href*="TWITTER_URL"], a[href*="DRIBBBLE_URL"], a[href*="BEHANCE_URL"], a[href*="PINTEREST_URL"]').forEach(link => {
+        for (const [placeholder, url] of Object.entries(socialLinks)) {
+            if (link.href.includes(placeholder)) {
+                link.href = url;
+            }
+        }
+    });
 }
 
 /**
