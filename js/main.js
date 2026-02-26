@@ -7,7 +7,7 @@
 const CONFIG = {
     // Template URLs - Replace these with your actual URLs
     profilePhoto: '../assets/profile.png',
-    aboutPhoto: '../assets/projects/pokemon.png',
+    aboutPhoto: '../assets/profile.png',
     resumeUrl: '../assets/resume.pdf',
     
     // Contact information
@@ -18,20 +18,28 @@ const CONFIG = {
     // Project links
     projects: [
         {
-            image: '../assets/projects/pokemon.png',
-            link: 'PROJECT_1_LINK'
+            image: '../assets/projects/deenify.png',
+            link: 'https://github.com/Tayyaba-tz/Deenify'
+        },
+        {
+            image: '../assets/projects/fintrack.png',
+            link: 'https://github.com/Tayyaba-tz/FinTrack'
         },
         {
             image: '../assets/projects/pokemon.png',
-            link: 'PROJECT_2_LINK'
+            link: 'https://github.com/Tayyaba-tz/Pokemon_Info_Card'
         },
         {
-            image: '../assets/projects/pokemon.png',
-            link: 'PROJECT_3_LINK'
+            image: '../assets/projects/weather.png',
+            link: 'https://github.com/Tayyaba-tz/Weather_Dashboard'
         },
         {
-            image: '../assets/projects/pokemon.png',
-            link: 'PROJECT_4_LINK'
+            image: '../assets/projects/evacuation.jpeg',
+            link: 'https://github.com/Tayyaba-tz/Disaster-Evacuation-Path-Planner'
+        },
+        {
+            image: '../assets/projects/tomzora.png',
+            link: 'https://github.com/Tayyaba-tz/CodeAlpha-Tomzora'
         },
     ],
     
