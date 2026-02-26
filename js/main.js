@@ -6,27 +6,27 @@
 // Configuration object for easy URL updates
 const CONFIG = {
     // Template URLs - Replace these with your actual URLs
-    profilePhoto: '../assets/Tayyaba-pfp.png',
-    aboutPhoto: '../assets/Tayyaba-pfp.png',
-    resumeUrl: '../assets/Tayyaba Zubaid-Resume.pdf',
+    profilePhoto: '../assets/profile.png',
+    aboutPhoto: '../assets/projects/pokemon.png',
+    resumeUrl: '../assets/resume.pdf',
     
     // Contact information
-    email: 'EMAIL_ADDRESS',
-    linkedin: 'LINKEDIN_URL',
-    github: 'GITHUB_URL',
+    email: 'tztayyaba.26@gmail.com',
+    linkedin: 'https://www.linkedin.com/in/tayyaba-zubaid-2553b2379/',
+    github: 'https://github.com/Tayyaba-tz',
     
     // Project links
     projects: [
         {
-            image: '../assets/Pokemon.png',
+            image: '../assets/projects/pokemon.png',
             link: 'PROJECT_1_LINK'
         },
         {
-            image: 'PROJECT_2_IMAGE_URL',
+            image: '../assets/projects/pokemon.png',
             link: 'PROJECT_2_LINK'
         },
         {
-            image: 'PROJECT_3_IMAGE_URL',
+            image: '../assets/projects/pokemon.png',
             link: 'PROJECT_3_LINK'
         }
     ],
@@ -83,31 +83,8 @@ function updateDynamicContent() {
         }
     });
     
-    // Update social links
-    updateSocialLinks();
-    
     // Update contact information
     updateContactInfo();
-}
-
-/**
- * Update all social media links
- */
-function updateSocialLinks() {
-    const socialLinks = {
-        'TWITTER_URL': CONFIG.twitter,
-        'DRIBBBLE_URL': CONFIG.dribbble,
-        'BEHANCE_URL': CONFIG.behance,
-        'PINTEREST_URL': CONFIG.pinterest
-    };
-    
-    document.querySelectorAll('a[href*="TWITTER_URL"], a[href*="DRIBBBLE_URL"], a[href*="BEHANCE_URL"], a[href*="PINTEREST_URL"]').forEach(link => {
-        for (const [placeholder, url] of Object.entries(socialLinks)) {
-            if (link.href.includes(placeholder)) {
-                link.href = url;
-            }
-        }
-    });
 }
 
 /**
