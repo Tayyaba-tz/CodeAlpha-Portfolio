@@ -28,7 +28,11 @@ const CONFIG = {
         {
             image: '../assets/projects/pokemon.png',
             link: 'PROJECT_3_LINK'
-        }
+        },
+        {
+            image: '../assets/projects/pokemon.png',
+            link: 'PROJECT_4_LINK'
+        },
     ],
     
     // Avatar URLs for social proof
