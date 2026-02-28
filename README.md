@@ -2,11 +2,6 @@
 
 A personal portfolio website built with pure **HTML5, CSS3, and vanilla JavaScript**. Designed with a dark theme and purple accent color system, featuring smooth animations, a filterable project gallery, and a fully responsive layout.
 
-🔗 **Live Site:** [tayyaba-tz.github.io/CodeAlpha-Portfolio](https://tayyaba-tz.github.io/CodeAlpha-Portfolio)  
-📄 **Resume:** Available for download on the site
-
----
-
 ## Preview
 
 ![Portfolio Preview](assets/profile.png)
@@ -44,8 +39,7 @@ A personal portfolio website built with pure **HTML5, CSS3, and vanilla JavaScri
 
 ```
 portfolio/
-├── html/
-│   └── index.html
+├── index.html
 ├── css/
 │   └── style.css
 ├── js/
@@ -74,8 +68,6 @@ portfolio/
 | **About** | Bio, key skills checklist, experience badge |
 | **Skills** | Animated progress bars for 9 technologies |
 | **Projects** | Filterable gallery of 6 projects with hover overlays |
-| **Experience** | Education timeline and project experience |
-| **Certificates** | 3 earned certificates with issuers |
 | **Contact** | Email, LinkedIn, and GitHub links |
 
 ---
@@ -124,22 +116,6 @@ cd CodeAlpha-Portfolio
 ```
 
 Then open `html/index.html` in your browser — that's it.
-
----
-
-## Deployment
-
-### GitHub Pages
-1. Push to your GitHub repository
-2. Go to **Settings → Pages**
-3. Set source to `master` branch, `/ (root)` folder
-4. Site goes live at `https://tayyaba-tz.github.io/CodeAlpha-Portfolio`
-
-### Netlify
-1. Connect repo at [netlify.com](https://netlify.com)
-2. Build command: *(leave blank)*
-3. Publish directory: `.`
-4. Deploy — every `git push` auto-redeploys
 
 ---
 
