@@ -260,27 +260,24 @@ function initProjectFilter() {
 
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Update active button
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
             const filter = btn.getAttribute('data-filter');
 
-            // Switch between grid layout (all) and list layout (filtered)
             if (filter === 'all') {
                 projectsGrid.classList.remove('is-filtered');
             } else {
                 projectsGrid.classList.add('is-filtered');
             }
 
-            // Show / hide cards
             projectCards.forEach(card => {
                 const category = card.getAttribute('data-category');
                 if (filter === 'all' || category === filter) {
-                    card.classList.remove('hidden');
+                    card.style.display = '';          // restore default
                     card.style.animation = 'fadeIn 0.3s ease-in';
                 } else {
-                    card.classList.add('hidden');
+                    card.style.display = 'none';      // inline style — CSS cannot override this
                 }
             });
         });
