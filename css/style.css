@@ -446,61 +446,10 @@ a:hover {
     gap: 8px;
 }
 
-.reviewer-avatars {
-    display: flex;
-    gap: -8px;
-}
-
-.reviewer-avatars img {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    border: 2px solid var(--bg);
-    margin-left: -8px;
-}
-
-.reviewer-avatars img:first-child {
-    margin-left: 0;
-}
 
 .review-count {
     font-size: 0.85rem;
     color: var(--text-muted);
-}
-
-.social-links {
-    position: fixed;
-    right: 30px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-lg);
-    z-index: 100;
-}
-
-.social-links a {
-    width: 50px;
-    height: 50px;
-    border: 2px solid var(--border-color);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-primary);
-    transition: var(--transition);
-    background-color: transparent;
-}
-
-.social-links a:hover {
-    color: var(--purple-light);
-    border-color: var(--purple-light);
-    box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
-}
-
-.social-links svg {
-    width: 24px;
-    height: 24px;
 }
 
 /* Hero Mobile */
@@ -523,13 +472,6 @@ a:hover {
         margin-top: var(--spacing-lg);
     }
     
-    .social-links {
-        position: static;
-        transform: none;
-        flex-direction: row;
-        justify-content: center;
-        margin-top: var(--spacing-xl);
-    }
 }
 
 /* ============================================
@@ -638,6 +580,13 @@ section {
     align-items: center;
 }
 
+/* Right column — wraps label, heading, text, checklist */
+.about-text-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .about-description {
     font-size: 1.1rem;
     color: var(--text-muted);
@@ -647,9 +596,9 @@ section {
 
 .about-checklist {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: var(--spacing-md);
-    margin-bottom: var(--spacing-xl);
+    margin-top: var(--spacing-lg);
 }
 
 .check-item {
@@ -667,8 +616,10 @@ section {
 
 .check-item span {
     color: var(--text-muted);
+    font-size: 0.95rem;
 }
 
+/* Left column — image, blob, badge */
 .about-visual {
     position: relative;
     display: flex;
@@ -679,7 +630,7 @@ section {
 .about-image-container {
     position: relative;
     width: 100%;
-    max-width: 350px;
+    max-width: 380px;
 }
 
 .about-image {
@@ -688,6 +639,7 @@ section {
     box-shadow: 0 20px 60px rgba(124, 58, 237, 0.3);
     position: relative;
     z-index: 10;
+    display: block;
 }
 
 .about-blob {
@@ -705,9 +657,9 @@ section {
 
 @keyframes blob-animation {
     0%, 100% { transform: translate(0, 0) scale(1); }
-    25% { transform: translate(20px, -50px) scale(1.1); }
-    50% { transform: translate(-20px, 20px) scale(0.9); }
-    75% { transform: translate(50px, 50px) scale(1.05); }
+    25%       { transform: translate(20px, -50px) scale(1.1); }
+    50%       { transform: translate(-20px, 20px) scale(0.9); }
+    75%       { transform: translate(50px, 50px) scale(1.05); }
 }
 
 .experience-badge {
@@ -736,15 +688,32 @@ section {
     color: rgba(255, 255, 255, 0.9);
 }
 
-/* About Mobile */
+/* ── Responsive ─────────────────────────────── */
+
+@media (max-width: 1024px) {
+    .about-container {
+        gap: 2.5rem;
+    }
+}
+
 @media (max-width: 768px) {
     .about-container {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
-    
+
+    /* On mobile, image comes first, text below */
+    .about-visual {
+        order: -1;
+    }
+
     .about-checklist {
         grid-template-columns: 1fr;
+    }
+
+    .about-image-container {
+        max-width: 280px;
+        margin: 0 auto;
     }
 }
 
@@ -830,71 +799,112 @@ section {
     box-shadow: 0 0 20px var(--purple-glow);
 }
 
+/* ── Grid: default ALL view (multi-column) ── */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 2rem;
 }
 
+/* ── Grid: filtered view (single column list) ── */
+.projects-grid.is-filtered {
+    grid-template-columns: 1fr;
+    max-width: 820px;
+    margin: 0 auto;
+}
+
+/* ── Card: default (overlay on hover) ── */
 .project-card {
     position: relative;
     border-radius: var(--radius-lg);
     overflow: hidden;
     cursor: pointer;
     transition: var(--transition);
-    opacity: 1;
-    display: flex;
-    flex-direction: column;
     background-color: var(--surface);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .project-card.hidden {
     display: none;
 }
 
+/* Fixed height image so scale(1.1) works from center */
 .project-image {
     width: 100%;
-    height: auto;
-    max-height: 500px;
-    object-fit: contain;
-    background-color: var(--bg);
-    transition: var(--transition);
+    height: 240px;
+    object-fit: cover;
+    object-position: top;
     display: block;
+    transition: transform 0.4s ease;
 }
 
+.project-card:hover .project-image {
+    transform: scale(1.06);
+}
+
+/* Overlay sits on top — content from the TOP, not bottom */
 .project-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(124, 58, 237, 0.9), rgba(168, 85, 247, 0.9));
+    inset: 0;
+    background: linear-gradient(160deg, rgba(76, 29, 149, 0.93), rgba(124, 58, 237, 0.88));
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start;
     padding: var(--spacing-xl);
     opacity: 0;
-    transition: var(--transition);
+    transition: opacity 0.35s ease;
 }
 
 .project-card:hover .project-overlay {
     opacity: 1;
 }
 
-.project-card:hover .project-image {
-    transform: scale(1.1);
+/* ── Card: filtered / list view ── */
+/* In filtered mode, cards go horizontal and description is always visible */
+.projects-grid.is-filtered .project-card {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    overflow: hidden;
+    min-height: 200px;
 }
 
+.projects-grid.is-filtered .project-image {
+    width: 300px;
+    min-width: 300px;
+    height: auto;
+    object-fit: cover;
+    object-position: top;
+    flex-shrink: 0;
+}
+
+/* In filtered mode, overlay becomes a static content panel (always visible) */
+.projects-grid.is-filtered .project-overlay {
+    position: static;
+    opacity: 1;
+    flex: 1;
+    background: linear-gradient(160deg, rgba(76, 29, 149, 0.95), rgba(124, 58, 237, 0.9));
+    justify-content: center;
+    padding: 2rem;
+}
+
+/* In filtered mode, no image zoom (it's a static layout) */
+.projects-grid.is-filtered .project-card:hover .project-image {
+    transform: none;
+}
+
+/* ── Overlay content ── */
 .project-category {
-    font-size: 0.8rem;
-    font-weight: 600;
+    font-size: 0.75rem;
+    font-weight: 700;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.75);
     margin-bottom: var(--spacing-sm);
 }
 
 .project-title {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 700;
     color: white;
     margin-bottom: var(--spacing-sm);
@@ -903,6 +913,14 @@ section {
 .project-description {
     font-size: 0.95rem;
     color: rgba(255, 255, 255, 0.9);
+    line-height: 1.65;
+    margin-bottom: var(--spacing-md);
+}
+
+.project-tech {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.65);
+    font-style: italic;
     margin-bottom: var(--spacing-md);
 }
 
@@ -913,87 +931,46 @@ section {
     color: white;
     font-weight: 600;
     transition: var(--transition);
+    margin-top: auto;
 }
 
 .project-link:hover {
-    color: var(--text-primary);
+    color: rgba(255, 255, 255, 0.75);
+    gap: 0.75rem;
 }
 
 .project-link svg {
-    width: 20px;
-    height: 20px;
-}
-
-.project-tech {
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: var(--spacing-md);
-    font-style: italic;
-}
-
-/* ============================================
-   ABOUT SECTION
-   ============================================ */
-
-.about {
-    background-color: var(--surface);
-}
-
-.about-content {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 1.5rem;
-    align-items: flex-start;
-    margin-top: var(--spacing-2xl);
-}
-
-.about-text {
-    display: flex;
-    flex-direction: column;
-}
-
-.about-text p {
-    font-size: 1rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-    margin-bottom: 0.75rem;
-}
-
-.about-highlights {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.75rem;
-    margin-top: 0.75rem;
-}
-
-.highlight-item {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-md);
-    padding: 0.5rem 0.75rem;
-    background-color: rgba(124, 58, 237, 0.1);
-    border-radius: var(--radius-lg);
-    border-left: 3px solid var(--purple-main);
-}
-
-.highlight-icon {
-    font-size: 1.2rem;
-    color: var(--purple-light);
+    width: 18px;
+    height: 18px;
     flex-shrink: 0;
 }
 
-.about-image {
-    position: relative;
-    display: flex;
-    justify-content: center;
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
 }
 
-.about-photo {
-    width: 100%;
-    max-width: 320px;
-    height: auto;
-    border-radius: var(--radius-lg);
-    box-shadow: 0 20px 60px rgba(124, 58, 237, 0.3);
+@media (max-width: 768px) {
+    .projects-grid,
+    .projects-grid.is-filtered {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+    }
+
+    .projects-grid.is-filtered .project-card {
+        flex-direction: column;
+    }
+
+    .projects-grid.is-filtered .project-image {
+        width: 100%;
+        height: 200px;
+    }
+
+    .project-image {
+        height: 200px;
+    }
 }
 
 /* ============================================
@@ -1379,17 +1356,7 @@ section {
         max-height: 350px;
     }
     
-    .social-links {
-        gap: 1rem;
-    }
-    
-    .social-links a {
-        width: 40px;
-        height: 40px;
-    }
-    
-    .about-content,
-    .education-content {
+    .about-content {
         grid-template-columns: 1fr;
         gap: 2rem;
     }

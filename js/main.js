@@ -6,8 +6,8 @@
 // Configuration object for easy URL updates
 const CONFIG = {
     // Template URLs - Replace these with your actual URLs
-    profilePhoto: '../assets/profile.png',
-    aboutPhoto: '../assets/profile.png',
+    profilePhoto: '../assets/about.png',
+    aboutPhoto: '../assets/pf.png',
     resumeUrl: '../assets/resume.pdf',
     
     // Contact information
@@ -42,13 +42,7 @@ const CONFIG = {
             link: 'https://github.com/Tayyaba-tz/CodeAlpha-Tomzora'
         },
     ],
-    
-    // Avatar URLs for social proof
-    avatars: [
-        'AVATAR_1_URL',
-        'AVATAR_2_URL',
-        'AVATAR_3_URL'
-    ]
+   
 };
 
 // ============================================
@@ -84,14 +78,6 @@ function updateDynamicContent() {
             
             if (img) img.src = CONFIG.projects[index].image;
             if (link) link.href = CONFIG.projects[index].link;
-        }
-    });
-    
-    // Update reviewer avatars
-    const avatarImages = document.querySelectorAll('.reviewer-avatars img');
-    avatarImages.forEach((img, index) => {
-        if (index < CONFIG.avatars.length) {
-            img.src = CONFIG.avatars[index];
         }
     });
     
@@ -270,18 +256,26 @@ function animateSkills() {
 function initProjectFilter() {
     const filterBtns = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
-    
+    const projectsGrid = document.querySelector('.projects-grid');
+
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             // Update active button
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            
-            // Filter projects
+
             const filter = btn.getAttribute('data-filter');
+
+            // Switch between grid layout (all) and list layout (filtered)
+            if (filter === 'all') {
+                projectsGrid.classList.remove('is-filtered');
+            } else {
+                projectsGrid.classList.add('is-filtered');
+            }
+
+            // Show / hide cards
             projectCards.forEach(card => {
                 const category = card.getAttribute('data-category');
-                
                 if (filter === 'all' || category === filter) {
                     card.classList.remove('hidden');
                     card.style.animation = 'fadeIn 0.3s ease-in';
